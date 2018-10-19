@@ -92,7 +92,9 @@
     {
         if ([SparkSetupCustomization sharedInstance].organization) // TODO: fix that so it'll work for non-org too
         {
-            [[SparkCloud sharedInstance] requestPasswordResetForCustomer:[SparkSetupCustomization sharedInstance].organizationName email:self.emailTextField.text completion:passwordResetCallback];
+            NSUInteger productId = 0;
+            [[SparkCloud sharedInstance] requestPasswordResetForCustomer:[SparkSetupCustomization sharedInstance].organizationName productId:productId completion:passwordResetCallback];
+//            [[SparkCloud sharedInstance] requestPasswordResetForCustomer:[SparkSetupCustomization sharedInstance].organizationName email:self.emailTextField.text completion:passwordResetCallback];
         }
         else
         {

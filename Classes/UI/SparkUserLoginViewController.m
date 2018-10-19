@@ -71,11 +71,13 @@
     self.emailTextField.delegate = self;
     self.emailTextField.returnKeyType = UIReturnKeyNext;
     self.emailTextField.font = [UIFont fontWithName:[SparkSetupCustomization sharedInstance].normalTextFontName size:16.0];
+    self.emailTextField.placeholder = @"email";
 
     self.passwordTextField.leftView = emptyView2;
     self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordTextField.delegate = self;
     self.passwordTextField.font = [UIFont fontWithName:[SparkSetupCustomization sharedInstance].normalTextFontName size:16.0];
+    self.passwordTextField.placeholder = @"password";
 
     self.skipAuthButton.hidden = !([SparkSetupCustomization sharedInstance].allowSkipAuthentication);
     [self.onePasswordButton setHidden:![[OnePasswordExtension sharedExtension] isAppExtensionAvailable]];
@@ -91,6 +93,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+// 画面をタッチした際にキーボードを解除する
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    if ([self.emailTextField isFirstResponder]) {
+        [self.emailTextField resignFirstResponder];
+    }
+    if ([self.passwordTextField isFirstResponder]) {
+        [self.passwordTextField resignFirstResponder];
+    }
+}
+
 /*
 #pragma mark - Navigation
 
@@ -101,6 +114,8 @@
 }
 */
 
+    
+    
 - (IBAction)onePasswordButtonTapped:(id)sender {
     [[OnePasswordExtension sharedExtension] findLoginForURLString:@"https://login.particle.io" forViewController:self sender:sender completion:^(NSDictionary *loginDictionary, NSError *error) {
         if (loginDictionary.count == 0) {

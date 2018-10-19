@@ -129,7 +129,8 @@ NSString *const kSparkSetupDidFailDeviceIDKey = @"kSparkSetupDidFailDeviceIDKey"
         if (self.setupOnly)
             [self runSetup];
         else
-            [self showSignup];
+            [self showLogin];
+//          [self showSignup];
     }
 
 

@@ -269,7 +269,9 @@
             [self.spinner startAnimating];
             
             // Sign up and then login
-            [[SparkCloud sharedInstance] signupWithCustomer:email password:self.passwordTextField.text orgSlug:[SparkSetupCustomization sharedInstance].organizationSlug completion:^(NSError *error) {
+            NSUInteger productId = 0;
+            [[SparkCloud sharedInstance] createCustomer:email password:self.passwordTextField.text productId:productId accountInfo:nil completion:^(NSError *error){
+//            [[SparkCloud sharedInstance] signupWithCustomer:email password:self.passwordTextField.text orgSlug:[SparkSetupCustomization sharedInstance].organizationSlug completion:^(NSError *error) {
                 if (!error)
                 {
 #ifdef ANALYTICS
@@ -295,7 +297,8 @@
             [self.spinner startAnimating];
             
             // Sign up and then login
-            [[SparkCloud sharedInstance] signupWithUser:email password:self.passwordTextField.text completion:^(NSError *error) {
+            [[SparkCloud sharedInstance] createUser:email password:self.passwordTextField.text accountInfo:nil completion:^(NSError *error) {
+//            [[SparkCloud sharedInstance] signupWithUser:email password:self.passwordTextField.text completion:^(NSError *error) {
                 if (!error)
                 {
 #ifdef ANALYTICS

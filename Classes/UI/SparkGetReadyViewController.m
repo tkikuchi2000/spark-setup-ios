@@ -201,7 +201,9 @@
     {
         if ([SparkSetupCustomization sharedInstance].organization)
         {
-            [[SparkCloud sharedInstance] generateClaimCodeForOrganization:[SparkSetupCustomization sharedInstance].organizationSlug andProduct:[SparkSetupCustomization sharedInstance].productSlug withActivationCode:nil completion:claimCodeCompletionBlock];
+            NSUInteger productId = 0; // This is dummy code.
+            [[SparkCloud sharedInstance] generateClaimCodeForProduct:productId completion:claimCodeCompletionBlock];
+//             [[SparkCloud sharedInstance] generateClaimCodeForOrganization:[SparkSetupCustomization sharedInstance].organizationSlug andProduct:[SparkSetupCustomization sharedInstance].productSlug withActivationCode:nil completion:claimCodeCompletionBlock];
         }
         else
         {
